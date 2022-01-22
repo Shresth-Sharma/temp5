@@ -2,7 +2,7 @@ function preload(){
 
 }
 function setup(){
-    createCanvas(600,1200);
+    createCanvas(1000,1800);
 }
 function draw(){
     background("black");
