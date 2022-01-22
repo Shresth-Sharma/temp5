@@ -42,14 +42,14 @@ function setup(){
 function draw(){
     background("black");
     char1.collide(ground)
-    char1.debug=true;
+    //char1.debug=true;
     if(background1.y>2610){
         background1.y=-850;
     }
     if(background2.y>2610){
         background2.y=-850;
     }
-    char1.velocityX = char1.velocityX + 20;
+    char1.velocityX = char1.velocityX + 15;
     if(state===0){
     background1.velocityY = 0;
     background2.velocityY = 0;
@@ -57,10 +57,14 @@ function draw(){
     if(keyDown("ENTER")){
         state = 1;
         score =0;
+        char3=0
+        imp2=0
     }
     ee.mousePressed(()=>{
         state=1;
         score =0;
+        char3=0
+        imp2=0
     });
     }
     if(state===1){
@@ -82,33 +86,33 @@ function draw(){
     if(frameCount%80===0){
         imp0 = Math.round(random(1,3))
         if(imp0===1){
-            sco1 = createSprite(830,-50,100,100);
+            sco1 = createSprite(840,-50,100,100);
             sco1.collide(ground);
             sco1.velocityY=38;
             //sco1.velocityX=5;
             sco0.add(sco1);
             sco1.addAnimation("im",sco2)
-            sco1.scale = 0.6;
+            sco1.scale = 0.4;
         }
         if(imp0===2){
-            mon1 = createSprite(830,-50,100,100);
+            mon1 = createSprite(840,-50,100,100);
             mon1.collide(ground);
             mon1.velocityY=38;
             //sco1.velocityX=5;
             mon0.add(mon1);
             mon1.addAnimation("im",mon2)
             mon1.scale = 0.4;
-            mon1.debug=true;
+           // mon1.debug=true;
         }
         if(imp0===3){
-            mon1 = createSprite(830,-50,100,100);
+            mon1 = createSprite(840,-50,100,100);
             mon1.collide(ground);
             mon1.velocityY=38;
             //sco1.velocityX=5;
             mon0.add(mon1);
             mon1.addAnimation("im",mon2)
             mon1.scale = 0.4;
-            mon1.debug=true;
+           // mon1.debug=true;
         }
     }
     if(char1.isTouching(mon0)){
