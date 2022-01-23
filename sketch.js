@@ -15,7 +15,7 @@ function preload(){
 }
 function setup(){
     createCanvas(910,1740);
-    char0.frameDelay = 1.7;
+    char0.frameDelay = 2;
     sco2.frameDelay = 0.5;
     mon2.frameDelay = 0.5;
     background1 = createSprite(455,870,910,1766);
@@ -32,12 +32,8 @@ function setup(){
     ground = createSprite(910,870,10,1740);
     sco0 = createGroup();
     mon0 = createGroup();
-    ee = createButton('START')
-    ee.size(200,200);
-    ee.position(0,1540);
-    jj = createButton('JUMP')
-    jj.size(200,200);
-    jj.position(0,0);
+    ee = createSprite(100,1640,200,200)
+    jj = createSprite(100,100,200,200)
 }
 function draw(){
     background("black");
@@ -60,22 +56,13 @@ function draw(){
         char3=0
         imp2=0
     }
-    ee.mousePressed(()=>{
-        state=1;
-        score =0;
-        char3=0
-        imp2=0
-    });
+   
     }
     if(state===1){
     if(keyDown("space")&&char1.x>728){
-        char1.velocityX = -120;
+        char1.velocityX = -100;
     }
-    jj.mousePressed(()=>{
-        if(char1.x>728){
-            char1.velocityX = -120;
-        }
-    });
+    
     background1.velocityY = 38;
     background2.velocityY = 38;
     if(char3===0){
@@ -83,12 +70,12 @@ function draw(){
         char3=1;
     }
     
-    if(frameCount%80===0){
+    if(frameCount%50===0){
         imp0 = Math.round(random(1,3))
         if(imp0===1){
             sco1 = createSprite(840,-50,100,100);
             sco1.collide(ground);
-            sco1.velocityY=38;
+            sco1.velocityY=98;
             //sco1.velocityX=5;
             sco0.add(sco1);
             sco1.addAnimation("im",sco2)
@@ -97,7 +84,7 @@ function draw(){
         if(imp0===2){
             mon1 = createSprite(840,-50,100,100);
             mon1.collide(ground);
-            mon1.velocityY=38;
+            mon1.velocityY=98;
             //sco1.velocityX=5;
             mon0.add(mon1);
             mon1.addAnimation("im",mon2)
@@ -107,7 +94,7 @@ function draw(){
         if(imp0===3){
             mon1 = createSprite(840,-50,100,100);
             mon1.collide(ground);
-            mon1.velocityY=38;
+            mon1.velocityY=98;
             //sco1.velocityX=5;
             mon0.add(mon1);
             mon1.addAnimation("im",mon2)
@@ -136,7 +123,7 @@ function draw(){
         background1.velocityY=0;
         background2.velocityY=0;
     }
-    if(score>=10){
+    if(score>=20){
         state=3
     }
     if(state===3){
@@ -148,4 +135,19 @@ function draw(){
         alert("You win");
     }
     drawSprites();
+}
+function mouseReleased(){
+    if(mouseButton === LEFT){
+        if(mouseX>0&&mouseX<200&&mouseY>0&&mouseY<200){
+            if(state===1&&char1.x>728){
+                char1.velocityX = -100;
+            }
+        }
+        if(mouseX>0&&mouseX<200&&mouseY>1540&&mouseY<1740){
+            state = 1;
+        score =0;
+        char3=0
+        imp2=0
+        }
+    }
 }
